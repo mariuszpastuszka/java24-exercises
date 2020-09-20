@@ -18,13 +18,20 @@ public class Example {
 
     }
 
-//    static void printChipVendorOptionalWay(Computer computer) {
-//        Optional.ofNullable(computer)
-//                .map(computer1 -> computer1.getGraphicsCard())
-//                .map(graphicsCard -> graphicsCard.getChip())
-//                .map(chip -> chip.getVendor())
-//                .ifPresent(s -> System.out.println("Vendor (Optional): " + s));
-//    }
+    static void printChipVendorOptionalWayWithLambda(Computer computer) {
+        Optional.ofNullable(computer)
+                .map(computer1 -> computer1.getGraphicsCard())
+                .map(graphicsCard -> graphicsCard.getChip())
+                .map(chip -> chip.getVendor())
+                .ifPresent(s -> System.out.println("Vendor (Optional): " + s));
+    }
+    static void printChipVendorOptionalWayWithException(Computer computer) {
+        Optional.ofNullable(computer)
+                .map(computer1 -> computer1.getGraphicsCard())
+                .map(graphicsCard -> graphicsCard.getChip())
+                .map(chip -> chip.getVendor())
+                .orElseThrow(() -> new IllegalArgumentException(""));
+    }
     static void printChipVendorOptionalWay(Computer computer) {
         Optional.ofNullable(computer)
                 .map(Computer::getGraphicsCard)
