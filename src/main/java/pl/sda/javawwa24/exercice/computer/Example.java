@@ -32,6 +32,13 @@ public class Example {
                 .map(chip -> chip.getVendor())
                 .orElseThrow(() -> new IllegalArgumentException(""));
     }
+    static void printVendorNameFromServerComp(ServerComputer serverComputer) {
+        Optional.ofNullable(serverComputer)
+                .flatMap(serverComputer1 -> serverComputer1.getGraphicsCard())
+                .map(graphicsCard -> graphicsCard.getChip())
+                .map(chip -> chip.getVendor())
+                .ifPresent(o -> System.out.println("Vendor: " + o));
+    }
     static void printChipVendorOptionalWay(Computer computer) {
         Optional.ofNullable(computer)
                 .map(Computer::getGraphicsCard)
@@ -39,7 +46,6 @@ public class Example {
                 .map(Chip::getVendor)
                 .ifPresent(System.out::println);
     }
-
     static void printChipVendorNaive(Computer computer) {
         System.out.println("Vendor: " + computer.getGraphicsCard().getChip().getVendor());
     }
